@@ -7,6 +7,16 @@ public class Video {
 	private String titulo;
 	private String descricao;
 
+	public Video(int id, String url, String titulo, String descricao) {
+		this.id = id;
+		this.url = url;
+		this.titulo = titulo;
+		this.descricao = descricao;
+	}
+
+	public Video() {
+	}
+
 	public int getId() {
 		return id;
 	}

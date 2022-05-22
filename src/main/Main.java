@@ -34,10 +34,13 @@ public class Main {
 					video.inserir();
 				}
 				case 2 -> {
+					video.atualizar();
 				}
 				case 3 -> {
+					video.excluir();
 				}
 				case 4 -> {
+					video.listar();
 				}
 				case 5 -> {
 				}
