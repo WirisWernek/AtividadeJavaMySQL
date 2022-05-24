@@ -6,22 +6,18 @@ import java.sql.Statement;
 
 import Database.Conexao;
 import Exceptions.BusinessError;
-import Models.Video;
+import Models.Tag;
 
-public class VideoPersist {
+public class TagPersist {
 
 	Conexao conexao = new Conexao();
 
-	public void inserir( Video video ) throws BusinessError {
+	public void inserir( Tag tag ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " INSERT INTO MyVideo.Videos " );
-			sql.append( " (descricao, url, titulo) VALUES('" );
-			sql.append( video.getDescricao() );
-			sql.append( "', '" );
-			sql.append( video.getUrl() );
-			sql.append( "', '" );
-			sql.append( video.getTitulo() );
+			sql.append( " INSERT INTO MyVideo.Tags " );
+			sql.append( " (descricao) VALUES('" );
+			sql.append( tag.getDescricao() );
 			sql.append( "');" );
 
 			Statement stmt = conexao.getCon().createStatement();
@@ -37,7 +33,7 @@ public class VideoPersist {
 	public ResultSet listar() throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " SELECT id, descricao, url, titulo FROM MyVideo.Videos;" );
+			sql.append( " SELECT id, descricao FROM MyVideo.Tags;" );
 			Statement stmt = conexao.getCon().createStatement();
 			ResultSet dados = stmt.executeQuery( sql.toString() );
 			return dados;
@@ -48,18 +44,14 @@ public class VideoPersist {
 		}
 	}
 
-	public void atualizar( Video video ) throws BusinessError {
+	public void atualizar( Tag tag ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " UPDATE MyVideo.Videos " );
+			sql.append( " UPDATE MyVideo.Tags " );
 			sql.append( " SET descricao='" );
-			sql.append( video.getDescricao() );
-			sql.append( "', url='" );
-			sql.append( video.getUrl() );
-			sql.append( "', titulo='" );
-			sql.append( video.getTitulo() );
-			sql.append( "'" );
-			sql.append( " WHERE id=" ).append( video.getId() );
+			sql.append( tag.getDescricao() );
+			sql.append( "' WHERE id=" );
+			sql.append( tag.getId() );
 			sql.append( ";" );
 
 			Statement stmt = conexao.getCon().createStatement();
@@ -74,7 +66,7 @@ public class VideoPersist {
 	public void excluir( int id ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " DELETE FROM MyVideo.Videos " );
+			sql.append( " DELETE FROM MyVideo.Tags " );
 			sql.append( " WHERE id=" ).append( id );
 			sql.append( ";" );
 			Statement stmt = conexao.getCon().createStatement();
