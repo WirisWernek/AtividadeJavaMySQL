@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.Tag;
+import Models.TagPorVideo;
 import Models.Video;
 
 public class ObjectUtils {
@@ -21,7 +22,7 @@ public class ObjectUtils {
 		return false;
 	}
 
-	public static List MapVideo( ResultSet dados ) {
+	public static List<Video> MapVideo( ResultSet dados ) {
 		List<Video> lisVideos;
 		lisVideos = new ArrayList<>();
 		try {
@@ -35,7 +36,7 @@ public class ObjectUtils {
 		return lisVideos;
 	}
 
-	public static List MapTag( ResultSet dados ) {
+	public static List<Tag> MapTag( ResultSet dados ) {
 		List<Tag> lisTags;
 		lisTags = new ArrayList<>();
 		try {
@@ -49,7 +50,18 @@ public class ObjectUtils {
 		return lisTags;
 	}
 
-	public static List MapTagPorVideo( ResultSet dados ) {
-		return null;
+	public static List<TagPorVideo> MapTagPorVideo( ResultSet dados ) {
+		List<TagPorVideo> lisTagsPorVideo;
+		lisTagsPorVideo = new ArrayList<>();
+		try {
+			while( dados.next() ) {
+				TagPorVideo tagPorVideo = new TagPorVideo( dados.getInt( "idassoc_tag_video" ), dados.getInt( "idVideo" ), dados.getString( "Link" ), dados.getString( "Descricao" ), dados.getInt( "DiaPostagem" ), dados.getInt( "MesPostagem" ), dados.getInt( "AnoPostagem" ), dados.getInt( "idTag" ),
+						dados.getString( "TextoTag" ) );
+				lisTagsPorVideo.add( tagPorVideo );
+			}
+		} catch ( SQLException ex ) {
+			System.out.println( "Ocorreu um erro ao mapear os dados!\n" + ex );
+		}
+		return lisTagsPorVideo;
 	}
 }

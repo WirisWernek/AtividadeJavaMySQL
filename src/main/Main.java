@@ -60,8 +60,10 @@ public class Main {
 					tag.listar();
 					break;
 				case 9:
+					tagPorVideo.inserir();
 					break;
 				case 10:
+					tagPorVideo.buscar();
 					break;
 				case 0:
 					System.out.println( "Até a próxima!!" );
