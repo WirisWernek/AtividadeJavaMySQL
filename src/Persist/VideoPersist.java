@@ -15,13 +15,18 @@ public class VideoPersist {
 	public void inserir( Video video ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " INSERT INTO MyVideo.Videos " );
-			sql.append( " (descricao, url, titulo) VALUES('" );
+
+			sql.append( " INSERT INTO prog4_ativ1.video " );
+			sql.append( " (Descricao, Link, DiaPostagem, MesPostagem, AnoPostagem) VALUES('" );
 			sql.append( video.getDescricao() );
 			sql.append( "', '" );
 			sql.append( video.getUrl() );
 			sql.append( "', '" );
-			sql.append( video.getTitulo() );
+			sql.append( video.getDia() );
+			sql.append( "', '" );
+			sql.append( video.getMes() );
+			sql.append( "', '" );
+			sql.append( video.getAno() );
 			sql.append( "');" );
 
 			Statement stmt = conexao.getCon().createStatement();
@@ -37,7 +42,8 @@ public class VideoPersist {
 	public ResultSet listar() throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " SELECT id, descricao, url, titulo FROM MyVideo.Videos;" );
+			sql.append( " SELECT idVideo, Descricao, Link, DiaPostagem, MesPostagem, AnoPostagem" );
+			sql.append( " FROM prog4_ativ1.video;" );
 			Statement stmt = conexao.getCon().createStatement();
 			ResultSet dados = stmt.executeQuery( sql.toString() );
 			return dados;
@@ -51,15 +57,19 @@ public class VideoPersist {
 	public void atualizar( Video video ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " UPDATE MyVideo.Videos " );
-			sql.append( " SET descricao='" );
+			sql.append( " UPDATE prog4_ativ1.video " );
+			sql.append( " SET Descricao='" );
 			sql.append( video.getDescricao() );
-			sql.append( "', url='" );
+			sql.append( "', Link='" );
 			sql.append( video.getUrl() );
-			sql.append( "', titulo='" );
-			sql.append( video.getTitulo() );
+			sql.append( "', DiaPostagem='" );
+			sql.append( video.getDia() );
+			sql.append( "', MesPostagem='" );
+			sql.append( video.getMes() );
+			sql.append( "', AnoPostagem='" );
+			sql.append( video.getAno() );
 			sql.append( "'" );
-			sql.append( " WHERE id=" ).append( video.getId() );
+			sql.append( " WHERE idVideo=" ).append( video.getId() );
 			sql.append( ";" );
 
 			Statement stmt = conexao.getCon().createStatement();
@@ -74,8 +84,8 @@ public class VideoPersist {
 	public void excluir( int id ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " DELETE FROM MyVideo.Videos " );
-			sql.append( " WHERE id=" ).append( id );
+			sql.append( " DELETE FROM prog4_ativ1.video " );
+			sql.append( " WHERE idVideo=" ).append( id );
 			sql.append( ";" );
 			Statement stmt = conexao.getCon().createStatement();
 			stmt.execute( sql.toString() );

@@ -18,11 +18,15 @@ public class VideoView {
 		System.out.println( "----CADASTRANDO NOVO VIDEO----" );
 		System.out.println( "Insira a URL do vídeo: " );
 		video.setUrl( input.nextLine() );
-		System.out.println( "Insira o título do vídeo: " );
-		video.setTitulo( input.nextLine() );
 		System.out.println( "Insira a descrição do vídeo: " );
 		video.setDescricao( input.nextLine() );
-		System.out.println( video.getUrl() + video.getTitulo() + video.getDescricao() );
+		System.out.println( "Insira o dia da publicação do vídeo: " );
+		video.setDia( input.nextInt() );
+		System.out.println( "Insira o mês da publicação do vídeo: " );
+		video.setMes( input.nextInt() );
+		System.out.println( "Insira o ano da publicação do vídeo: " );
+		video.setAno( input.nextInt() );
+
 		try {
 			controller.inserir( video );
 		} catch ( BusinessException e ) {
@@ -34,12 +38,13 @@ public class VideoView {
 		System.out.println( "----LISTANDO VÍDEOS----" );
 		try {
 			List<Video> listVideos = controller.listar();
+
 			if( !Objects.isNull( listVideos ) ) {
 				for( Video entidade : listVideos ) {
 					System.out.println( "Id: " + entidade.getId() );
-					System.out.println( "Título: " + entidade.getTitulo() );
 					System.out.println( "Descrição: " + entidade.getDescricao() );
 					System.out.println( "Url: " + entidade.getUrl() );
+					System.out.println( "Data de Publicação: " + entidade.getDate() );
 					System.out.println( "------------------------------" );
 				}
 			} else {
@@ -54,9 +59,10 @@ public class VideoView {
 		System.out.println( "----ATUALIZANDO VÍDEO----" );
 		try {
 			List<Video> listVideos = controller.listar();
+
 			if( !Objects.isNull( listVideos ) ) {
 				for( Video entidade : listVideos ) {
-					System.out.println( "Id: " + entidade.getId() + " - Título: " + entidade.getTitulo() + " - Url: " + entidade.getUrl() );
+					System.out.println( "Id: " + entidade.getId() + " - Título: " + entidade.getDescricao() + " - Url: " + entidade.getUrl() );
 				}
 
 				System.out.println( "Insira o ID do vídeo a ser atualizado: " );
@@ -64,10 +70,15 @@ public class VideoView {
 				input.nextLine();
 				System.out.println( "Insira a URL do vídeo: " );
 				video.setUrl( input.nextLine() );
-				System.out.println( "Insira o título do vídeo: " );
-				video.setTitulo( input.nextLine() );
 				System.out.println( "Insira a descrição do vídeo: " );
 				video.setDescricao( input.nextLine() );
+				System.out.println( "Insira o dia da publicação do vídeo: " );
+				video.setDia( input.nextInt() );
+				System.out.println( "Insira o mês da publicação do vídeo: " );
+				video.setMes( input.nextInt() );
+				System.out.println( "Insira o ano da publicação do vídeo: " );
+				video.setAno( input.nextInt() );
+
 				controller.atualizar( video );
 			} else {
 				System.out.println( "Nenhum Video encontrado para ser atualizado" );
@@ -83,7 +94,7 @@ public class VideoView {
 			List<Video> listVideos = controller.listar();
 			if( !Objects.isNull( listVideos ) ) {
 				for( Video entidade : listVideos ) {
-					System.out.println( "Id: " + entidade.getId() + " - Título: " + entidade.getTitulo() + " - Url: " + entidade.getUrl() );
+					System.out.println( "Id: " + entidade.getId() + " - Título: " + entidade.getDescricao() + " - Url: " + entidade.getUrl() );
 				}
 
 				System.out.println( "Insira o ID do vídeo a ser excluido: " );

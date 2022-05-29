@@ -26,7 +26,7 @@ public class ObjectUtils {
 		lisVideos = new ArrayList<>();
 		try {
 			while( dados.next() ) {
-				Video video = new Video( dados.getInt( "id" ), dados.getString( "url" ), dados.getString( "titulo" ), dados.getString( "descricao" ) );
+				Video video = new Video( dados.getInt( "idVideo" ), dados.getString( "Link" ), dados.getString( "Descricao" ), dados.getInt( "DiaPostagem" ), dados.getInt( "MesPostagem" ), dados.getInt( "AnoPostagem" ) );
 				lisVideos.add( video );
 			}
 		} catch ( SQLException ex ) {
@@ -40,7 +40,7 @@ public class ObjectUtils {
 		lisTags = new ArrayList<>();
 		try {
 			while( dados.next() ) {
-				Tag tag = new Tag( dados.getInt( "id" ), dados.getString( "descricao" ) );
+				Tag tag = new Tag( dados.getInt( "idTag" ), dados.getString( "TextoTag" ) );
 				lisTags.add( tag );
 			}
 		} catch ( SQLException ex ) {

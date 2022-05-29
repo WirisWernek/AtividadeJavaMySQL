@@ -15,8 +15,8 @@ public class TagPersist {
 	public void inserir( Tag tag ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " INSERT INTO MyVideo.Tags " );
-			sql.append( " (descricao) VALUES('" );
+			sql.append( " INSERT INTO prog4_ativ1.tag " );
+			sql.append( " (TextoTag) VALUES('" );
 			sql.append( tag.getDescricao() );
 			sql.append( "');" );
 
@@ -33,7 +33,7 @@ public class TagPersist {
 	public ResultSet listar() throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " SELECT id, descricao FROM MyVideo.Tags;" );
+			sql.append( " SELECT idTag, TextoTag FROM prog4_ativ1.tag;" );
 			Statement stmt = conexao.getCon().createStatement();
 			ResultSet dados = stmt.executeQuery( sql.toString() );
 			return dados;
@@ -47,10 +47,10 @@ public class TagPersist {
 	public void atualizar( Tag tag ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " UPDATE MyVideo.Tags " );
-			sql.append( " SET descricao='" );
+			sql.append( " UPDATE prog4_ativ1.tag " );
+			sql.append( " SET TextoTag='" );
 			sql.append( tag.getDescricao() );
-			sql.append( "' WHERE id=" );
+			sql.append( "' WHERE idTag=" );
 			sql.append( tag.getId() );
 			sql.append( ";" );
 
@@ -66,8 +66,8 @@ public class TagPersist {
 	public void excluir( int id ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-			sql.append( " DELETE FROM MyVideo.Tags " );
-			sql.append( " WHERE id=" ).append( id );
+			sql.append( " DELETE FROM prog4_ativ1.tag " );
+			sql.append( " WHERE idTag=" ).append( id );
 			sql.append( ";" );
 			Statement stmt = conexao.getCon().createStatement();
 			stmt.execute( sql.toString() );

@@ -13,14 +13,20 @@ public class VideoController {
 	VideoPersist persiste = new VideoPersist();
 
 	public void inserir( Video video ) throws BusinessException {
-		if( ObjectUtils.isNullOrEmpty( video.getTitulo() ) ) {
-			throw new BusinessException( "Titulo do vídeo não foi informado" );
-		}
 		if( ObjectUtils.isNullOrEmpty( video.getUrl() ) ) {
 			throw new BusinessException( "URL do vídeo não foi informado" );
 		}
 		if( ObjectUtils.isNullOrEmpty( video.getDescricao() ) ) {
 			throw new BusinessException( "Descrição do vídeo não foi informada" );
+		}
+		if( ObjectUtils.isNullOrEmpty( video.getDia() ) ) {
+			throw new BusinessException( "Dia de postagem do vídeo não foi informado" );
+		}
+		if( ObjectUtils.isNullOrEmpty( video.getMes() ) ) {
+			throw new BusinessException( "Mês de postagem do vídeo não foi informado" );
+		}
+		if( ObjectUtils.isNullOrEmpty( video.getAno() ) ) {
+			throw new BusinessException( "Ano de postagem do vídeo não foi informado" );
 		}
 
 		try {
@@ -44,15 +50,22 @@ public class VideoController {
 		if( ObjectUtils.isNullOrEmpty( video.getId() ) ) {
 			throw new BusinessException( "Id do vídeo não foi informado" );
 		}
-		if( ObjectUtils.isNullOrEmpty( video.getTitulo() ) ) {
-			throw new BusinessException( "Titulo do vídeo não foi informado" );
-		}
 		if( ObjectUtils.isNullOrEmpty( video.getUrl() ) ) {
 			throw new BusinessException( "URL do vídeo não foi informada" );
 		}
 		if( ObjectUtils.isNullOrEmpty( video.getDescricao() ) ) {
 			throw new BusinessException( "Descrição do vídeo não foi informada" );
 		}
+		if( ObjectUtils.isNullOrEmpty( video.getDia() ) ) {
+			throw new BusinessException( "Dia de postagem do vídeo não foi informado" );
+		}
+		if( ObjectUtils.isNullOrEmpty( video.getMes() ) ) {
+			throw new BusinessException( "Mês de postagem do vídeo não foi informado" );
+		}
+		if( ObjectUtils.isNullOrEmpty( video.getAno() ) ) {
+			throw new BusinessException( "Ano de postagem do vídeo não foi informado" );
+		}
+
 		try {
 			persiste.atualizar( video );
 		} catch ( BusinessError ex ) {
