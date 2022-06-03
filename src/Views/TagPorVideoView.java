@@ -56,11 +56,63 @@ public class TagPorVideoView {
 	}
 
 	public void listar() {
+		try {
+			List<Video> videos = this.controller.listar();
 
+			System.out.println( "----VÍDEOS ENCONTRADOS----" );
+
+			for( Video video : videos ) {
+				System.out.println( "Id: " + video.getId() );
+				System.out.println( "Descrição: " + video.getDescricao() );
+				System.out.println( "Url: " + video.getUrl() );
+				System.out.println( "Data de Publicação: " + video.getDate() );
+				System.out.println( "Tags" );
+				for( Tag tag : video.getTags() ) {
+					System.out.println( "Id: " + tag.getId() );
+					System.out.println( "Descrição: " + tag.getDescricao() );
+					System.out.println( "------------------------------" );
+				}
+				System.out.println( "------------------------------" );
+			}
+		} catch ( BusinessException ex ) {
+			System.out.println( ex.getMessage() );
+		}
 	}
 
 	public void excluir() {
+		try {
+			List<Video> listVideos = videoController.listar();
+			List<Tag> listTags = new ArrayList<Tag>();
 
+			if( !Objects.isNull( listVideos ) ) {
+				for( Video entidade : listVideos ) {
+					System.out.println( "Id: " + entidade.getId() + " - Título: " + entidade.getDescricao() + " - Url: " + entidade.getUrl() );
+				}
+				System.out.println( "Insira o ID do Video : " );
+				tagPorVideo.setIdVideo( input.nextInt() );
+			} else {
+				System.out.println( "Nenhum Video encontrado para ter uma tag removida" );
+			}
+
+			listTags = controller.getTagsDoVideo( tagPorVideo.getIdVideo() );
+
+			if( !Objects.isNull( listTags ) ) {
+				for( Tag entidade : listTags ) {
+					System.out.println( "Id: " + entidade.getId() + " - Descrição: " + entidade.getDescricao() );
+				}
+
+				System.out.println( "Insira o ID da Tag a ser removida: " );
+				tagPorVideo.setIdTag( input.nextInt() );
+
+			} else {
+				System.out.println( "Nenhuma Tag encontrada para ser removida" );
+			}
+
+			controller.excluir( tagPorVideo );
+
+		} catch ( BusinessException ex ) {
+			System.out.println( ex.getMessage() );
+		}
 	}
 
 	public void buscar() {

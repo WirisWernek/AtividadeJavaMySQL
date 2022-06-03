@@ -9,6 +9,8 @@ import Views.VideoView;
 
 public class Main {
 
+	// TODO: Listar videos com tags
+	// TODO: Remover tag do video
 	public static void main( String[] args ) {
 		Conexao con = new Conexao();
 		VideoView video = new VideoView();
@@ -29,6 +31,8 @@ public class Main {
 			System.out.println( "\t8-Listar Tag" );
 			System.out.println( "\t9-Informar Tags do Vídeo" );
 			System.out.println( "\t10-Buscar Vídeos por Tag" );
+			System.out.println( "\t11-Listar Vídeos com Tags" );
+			System.out.println( "\t12-Remover tag do vídeo" );
 			System.out.println( "\t0-Sair" );
 			System.out.println( "O que você deseja fazer?: " );
 			opcao = input.nextInt();
@@ -64,6 +68,12 @@ public class Main {
 					break;
 				case 10:
 					tagPorVideo.buscar();
+					break;
+				case 11:
+					tagPorVideo.listar();
+					break;
+				case 12:
+					tagPorVideo.excluir();
 					break;
 				case 0:
 					System.out.println( "Até a próxima!!" );
