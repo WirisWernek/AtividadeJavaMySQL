@@ -67,7 +67,8 @@ public class TagPersist {
 		StringBuilder sql = new StringBuilder();
 		try {
 			sql.append( " DELETE FROM prog4_ativ1.tag " );
-			sql.append( " WHERE idTag=" ).append( id );
+			sql.append( " WHERE idTag=" );
+			sql.append( id );
 			sql.append( ";" );
 			Statement stmt = conexao.getCon().createStatement();
 			stmt.execute( sql.toString() );

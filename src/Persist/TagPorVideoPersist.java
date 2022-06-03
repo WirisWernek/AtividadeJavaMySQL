@@ -14,7 +14,6 @@ public class TagPorVideoPersist {
 	Conexao conexao = new Conexao();
 
 	public void inserir( int idVideo, List<Integer> idTags ) throws BusinessError {
-
 		try {
 			for( int tag : idTags ) {
 				StringBuilder sql = new StringBuilder();
@@ -38,7 +37,6 @@ public class TagPorVideoPersist {
 	public ResultSet buscar( List<String> listTags ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-
 			sql.append( " SELECT DISTINCT video.idVideo, video.Descricao, video.Link, video.DiaPostagem, video.MesPostagem ," );
 			sql.append( " video.AnoPostagem  FROM prog4_ativ1.video video INNER JOIN prog4_ativ1.assoc_tag_video associativa " );
 			sql.append( " on associativa.idVideo  = video.idVideo " );
@@ -64,7 +62,6 @@ public class TagPorVideoPersist {
 	public ResultSet listar() throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-
 			sql.append( " SELECT DISTINCT video.idVideo, video.Descricao, video.Link, video.DiaPostagem, video.MesPostagem ," );
 			sql.append( " video.AnoPostagem  FROM prog4_ativ1.video video INNER JOIN prog4_ativ1.assoc_tag_video associativa " );
 			sql.append( " on associativa.idVideo  = video.idVideo " );

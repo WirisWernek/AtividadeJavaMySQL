@@ -1,6 +1,7 @@
 package Views;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -64,6 +65,10 @@ public class TagPorVideoView {
 
 		} catch ( BusinessException ex ) {
 			System.out.println( ex.getMessage() );
+		} catch ( InputMismatchException i ) {
+			System.out.println( "Tipo de dado não esperado" );
+		} catch ( Exception e ) {
+			System.out.println( e.getMessage() );
 		}
 	}
 
@@ -72,7 +77,6 @@ public class TagPorVideoView {
 			List<Video> videos = this.controller.listar();
 
 			System.out.println( "----VÍDEOS ENCONTRADOS----" );
-
 			for( Video video : videos ) {
 				System.out.println( "Id: " + video.getId() );
 				System.out.println( "Descrição: " + video.getDescricao() );
@@ -88,6 +92,10 @@ public class TagPorVideoView {
 			}
 		} catch ( BusinessException ex ) {
 			System.out.println( ex.getMessage() );
+		} catch ( InputMismatchException i ) {
+			System.out.println( "Tipo de dado não esperado" );
+		} catch ( Exception e ) {
+			System.out.println( e.getMessage() );
 		}
 	}
 
@@ -124,13 +132,18 @@ public class TagPorVideoView {
 
 		} catch ( BusinessException ex ) {
 			System.out.println( ex.getMessage() );
+		} catch ( InputMismatchException i ) {
+			System.out.println( "Tipo de dado não esperado" );
+		} catch ( Exception e ) {
+			System.out.println( e.getMessage() );
 		}
 	}
 
 	public void buscar() {
-		List<String> listTags = new ArrayList<String>();
-		Boolean continua = true;
 		try {
+			List<String> listTags = new ArrayList<String>();
+			Boolean continua = true;
+
 			do {
 				System.out.println( "Insira a tag a ser bucada ou digite 0 para sair: " );
 				String tag = input.nextLine();
@@ -162,6 +175,10 @@ public class TagPorVideoView {
 			}
 		} catch ( BusinessException ex ) {
 			System.out.println( ex.getMessage() );
+		} catch ( InputMismatchException i ) {
+			System.out.println( "Tipo de dado não esperado" );
+		} catch ( Exception e ) {
+			System.out.println( e.getMessage() );
 		}
 
 	}

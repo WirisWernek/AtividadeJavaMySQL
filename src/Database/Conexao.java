@@ -16,7 +16,6 @@ public class Conexao {
 		String url = "jdbc:mysql://localhost:3306/prog4_ativ1?" + "useTimeZone=true&serverTimeZone=UTC&autoReconnect=true&useSSL=false";
 		String usuario = "root";
 		String senha = "itix.123";
-
 		this.EstabeleceConexao( url, usuario, senha );
 	}
 
@@ -27,21 +26,19 @@ public class Conexao {
 	private void EstabeleceConexao( String url, String usuario, String senha ) {
 		try {
 			Class.forName( "com.mysql.cj.jdbc.Driver" );
+			this.con = DriverManager.getConnection( url, usuario, senha );
+
+			if( this.con == null ) {
+				System.out.println( "Conexo com o BD não estabelecida" );
+			} else {
+				System.out.println( "Conexo estabelecida" );
+			}
 		} catch ( ClassNotFoundException e ) {
 			System.out.println( "Erro ao carregar o driver" );
-		}
-
-		try {
-			this.con = DriverManager.getConnection( url, usuario, senha );
 		} catch ( SQLException e ) {
 			System.out.println( "Erro ao realizar a conexo" );
+		} catch ( Exception e ) {
+			System.out.println( "Ocorreu um erro, contate o adiministrador do sistema" );
 		}
-
-		if( this.con == null ) {
-			System.out.println( "Conexo com o BD não estabelecida" );
-		} else {
-			System.out.println( "Conexo estabelecida" );
-		}
-
 	}
 }

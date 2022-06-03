@@ -15,7 +15,6 @@ public class VideoPersist {
 	public void inserir( Video video ) throws BusinessError {
 		StringBuilder sql = new StringBuilder();
 		try {
-
 			sql.append( " INSERT INTO prog4_ativ1.video " );
 			sql.append( " (Descricao, Link, DiaPostagem, MesPostagem, AnoPostagem) VALUES('" );
 			sql.append( video.getDescricao() );
