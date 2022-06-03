@@ -30,8 +30,6 @@ public class Conexao {
 
 			if( this.con == null ) {
 				System.out.println( "Conexo com o BD não estabelecida" );
-			} else {
-				System.out.println( "Conexo estabelecida" );
 			}
 		} catch ( ClassNotFoundException e ) {
 			System.out.println( "Erro ao carregar o driver" );
