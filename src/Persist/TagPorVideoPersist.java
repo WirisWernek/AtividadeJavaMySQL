@@ -13,18 +13,21 @@ public class TagPorVideoPersist {
 
 	Conexao conexao = new Conexao();
 
-	public void inserir( TagPorVideo tagPorVideo ) throws BusinessError {
-		StringBuilder sql = new StringBuilder();
-		try {
-			sql.append( " INSERT INTO prog4_ativ1.assoc_tag_video " );
-			sql.append( " (idVideo, idTag) VALUES(" );
-			sql.append( tagPorVideo.getIdVideo() );
-			sql.append( ", " );
-			sql.append( tagPorVideo.getIdTag() );
-			sql.append( ");" );
+	public void inserir( int idVideo, List<Integer> idTags ) throws BusinessError {
 
-			Statement stmt = conexao.getCon().createStatement();
-			stmt.execute( sql.toString() );
+		try {
+			for( int tag : idTags ) {
+				StringBuilder sql = new StringBuilder();
+				sql.append( " INSERT INTO prog4_ativ1.assoc_tag_video " );
+				sql.append( " (idVideo, idTag) VALUES(" );
+				sql.append( idVideo );
+				sql.append( ", " );
+				sql.append( tag );
+				sql.append( ");" );
+
+				Statement stmt = conexao.getCon().createStatement();
+				stmt.execute( sql.toString() );
+			}
 		} catch ( SQLException sqlEx ) {
 			throw new BusinessError( "Ocorreu um erro ao se comunicar com o banco de dados\n" + sqlEx.getMessage() );
 		} catch ( Exception ex ) {

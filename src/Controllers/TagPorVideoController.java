@@ -16,16 +16,16 @@ public class TagPorVideoController {
 
 	TagPorVideoPersist persiste = new TagPorVideoPersist();
 
-	public void inserir( TagPorVideo tagPorVideo ) throws BusinessException {
-		if( ObjectUtils.isNullOrEmpty( tagPorVideo.getIdTag() ) ) {
-			throw new BusinessException( "A tag não foi informada" );
+	public void inserir( int idVideo, List<Integer> idTags ) throws BusinessException {
+		if( ObjectUtils.isNullOrEmpty( idTags ) ) {
+			throw new BusinessException( "Nenhuma tag foi informada" );
 		}
-		if( ObjectUtils.isNullOrEmpty( tagPorVideo.getIdVideo() ) ) {
+		if( ObjectUtils.isNullOrEmpty( idVideo ) ) {
 			throw new BusinessException( "O video não foi informado" );
 		}
 
 		try {
-			persiste.inserir( tagPorVideo );
+			persiste.inserir( idVideo, idTags );
 		} catch ( BusinessError e ) {
 			System.out.println( e.getMessage() );
 		}

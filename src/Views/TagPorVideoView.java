@@ -16,6 +16,7 @@ import Models.Video;
 public class TagPorVideoView {
 
 	TagPorVideo tagPorVideo = new TagPorVideo();
+	List<Integer> tags = new ArrayList<Integer>();
 	TagPorVideoController controller = new TagPorVideoController();
 	TagController tagController = new TagController();
 	VideoController videoController = new VideoController();
@@ -25,13 +26,15 @@ public class TagPorVideoView {
 		try {
 			List<Tag> listTags = tagController.listar();
 			List<Video> listVideos = videoController.listar();
+			Boolean continua = true;
+			int video = 0;
 
 			if( !Objects.isNull( listVideos ) ) {
 				for( Video entidade : listVideos ) {
 					System.out.println( "Id: " + entidade.getId() + " - Título: " + entidade.getDescricao() + " - Url: " + entidade.getUrl() );
 				}
 				System.out.println( "Insira o ID do Video a ser tageado: " );
-				tagPorVideo.setIdVideo( input.nextInt() );
+				video = input.nextInt();
 			} else {
 				System.out.println( "Nenhum Video encontrado para ser tageado" );
 			}
@@ -41,14 +44,23 @@ public class TagPorVideoView {
 					System.out.println( "Id: " + entidade.getId() + " - Descrição: " + entidade.getDescricao() );
 				}
 
-				System.out.println( "Insira o ID da Tag a ser utilizada: " );
-				tagPorVideo.setIdTag( input.nextInt() );
+				do {
+					System.out.println( "Insira o ID da Tag a ser utilizada ou digite 0 para sair: " );
+					int tag = input.nextInt();
+
+					if( tag == 0 ) {
+						continua = false;
+					} else {
+						tags.add( tag );
+					}
+
+				} while( continua );
 
 			} else {
 				System.out.println( "Nenhuma Tag encontrada para ser utilizado" );
 			}
 
-			controller.inserir( tagPorVideo );
+			controller.inserir( video, tags );
 
 		} catch ( BusinessException ex ) {
 			System.out.println( ex.getMessage() );
@@ -130,7 +142,6 @@ public class TagPorVideoView {
 				}
 
 			} while( continua );
-			System.out.println( listTags );
 
 			List<Video> videos = this.controller.buscar( listTags );
 
